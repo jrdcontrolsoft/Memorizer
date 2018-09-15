@@ -73,12 +73,8 @@ public class Memorizer extends JFrame {
     	
     	Action open = new AbstractAction("Open") {
             public void actionPerformed(ActionEvent e) {
-            	/* JOptionPane.showMessageDialog(null, "Open"
-        			, "MENU SELECTION", JOptionPane.PLAIN_MESSAGE); */
             	File fpath = getOneFileFromUser(getDefProgDir(), null
             		, new PassedTypeFilter("txt", "Text files"));
-            	/* JOptionPane.showMessageDialog(null, (fpath==null?"NULL":fpath)
-        			, "FILE TO OPEN:", JOptionPane.PLAIN_MESSAGE); */
             	if (fpath==null) return;
             	
             	BufferedReader br = openTextInput(fpath.toString(), allErrors);
@@ -89,7 +85,6 @@ public class Memorizer extends JFrame {
             	String fileLine = readTextInput(br, allErrors);
             	while (fileLine!=null) {
             		lines.add(fileLine);
-            		//System.out.println(fileLine);
             		textPane.setText(textPane.getText() + fileLine + "\n");
             		fileLine = readTextInput(br, allErrors);
             	}
@@ -103,15 +98,11 @@ public class Memorizer extends JFrame {
         };
         Action quit = new AbstractAction("Exit") {
             public void actionPerformed(ActionEvent e) {
-            	/* JOptionPane.showMessageDialog(null, "Quit"
-            		, "MENU SELECTION", JOptionPane.PLAIN_MESSAGE); */
             	closeProgram();
             }
         };
         MouseAdapter resetText = new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-        		/* JOptionPane.showMessageDialog(null, "You clicked reset"
-        			, "MENU SELECTION", JOptionPane.PLAIN_MESSAGE); */
 				//reset to original text loaded from file (or default)
 				if (lines!=null) {
 	            	textPane.setText("");
@@ -128,8 +119,6 @@ public class Memorizer extends JFrame {
         };
         Action mono = new AbstractAction("Monospaced") {
             public void actionPerformed(ActionEvent e) {
-        		/* JOptionPane.showMessageDialog(null, "Monospaced"
-            		, "MENU SELECTION", JOptionPane.PLAIN_MESSAGE); */
             	fontFace = "Monospaced";
                 textPane.setFont(new Font(fontFace, Font.PLAIN, fontSize));
             	textPane.invalidate();
@@ -137,8 +126,6 @@ public class Memorizer extends JFrame {
         };
         Action serif = new AbstractAction("Serif") {
             public void actionPerformed(ActionEvent e) {
-        		/* JOptionPane.showMessageDialog(null, "Serif", "MENU SELECTION"
-            		, JOptionPane.PLAIN_MESSAGE); */
             	fontFace = "Serif";
                 textPane.setFont(new Font(fontFace, Font.PLAIN, fontSize));
             	textPane.invalidate();
@@ -146,8 +133,6 @@ public class Memorizer extends JFrame {
         };
         Action sserif = new AbstractAction("SansSerif") {
             public void actionPerformed(ActionEvent e) {
-        		/* JOptionPane.showMessageDialog(null, "SansSerif", "MENU SELECTION"
-            		, JOptionPane.PLAIN_MESSAGE); */
             	fontFace = "SansSerif";
                 textPane.setFont(new Font(fontFace, Font.PLAIN, fontSize));
             	textPane.invalidate();
@@ -212,30 +197,10 @@ public class Memorizer extends JFrame {
 		knockoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteLetters();
-				//knockoutBtn.setText("Next step " + charDivisor);
 			}
 		});
 		return knockoutBtn;
 	}
-	/*
-	private JButton setupResetBtn() {
-		resetBtn = new JButton("Reset text to beginning");
-		resetBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		return resetBtn;
-	}
-	private JPanel setupKnockoutPnl() {
-		JPanel knockoutPnl = new JPanel();
-		knockoutPnl.setLayout(new BorderLayout());
-		add(setupKnockoutBtn());
-		add(BorderLayout.LINE_START,setupResetBtn());
-		//setMaximumSize(new Dimension(Integer.MAX_VALUE,10));
-		return knockoutPnl;
-	}
-	*/
 	
     //file methods
 	private String getDefProgDir() {
@@ -249,7 +214,7 @@ public class Memorizer extends JFrame {
 	
 	private File getOneFileFromUser(String passedDir, Component parentComp
 			, PassedTypeFilter passedFilt) {
-    	// call (currDir, this, new PassedTypeFilter("txt", "Text files")));
+    	// call with (currDir, this, new PassedTypeFilter("txt", "Text files")));
 		JFileChooser ImportChooser = new JFileChooser(passedDir);
     	if (passedFilt!=null) {
     		ImportChooser.setFileFilter(passedFilt);
@@ -318,10 +283,6 @@ public class Memorizer extends JFrame {
 		add(textPane);
 		//add(BorderLayout.SOUTH, setupKnockoutPnl());
 		add(BorderLayout.PAGE_END, setupKnockoutBtn());
-		//add(BorderLayout.PAGE_START, setupResetBtn());
-		//knockoutBtn.requestFocusInWindow();
-		//getRootPane().setDefaultButton(knockoutBtn);
-		//knockoutBtn.requestFocus();
 	}
 	
 	public static void main(String[] args) {
