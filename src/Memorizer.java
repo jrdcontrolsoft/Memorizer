@@ -44,7 +44,7 @@ public class Memorizer extends JFrame {
 	 */
 	
 	private PopupErrorHandler allErrors = new PopupErrorHandler();
-	private String defaultTxt = "\nLoad the text file you wish to memorize.";
+	private String defaultTxt = "\nUse the File menu to load the text file you wish to memorize.";
 	private ArrayList<String> lines;
 	private JTextPane textPane = new JTextPane();
 	private String fontFace = "Monospaced";	//"SansSerif";
