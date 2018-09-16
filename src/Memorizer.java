@@ -142,6 +142,17 @@ public class Memorizer extends JFrame {
         menuBar.add(flmenu);
         menuBar.add(rstmenu);
         menuBar.add(ftmenu);
+        /*
+        //add keystrokes to quickly increase/decrease font
+        InputMap textInputMap = textPane.getInputMap();
+        //InputMap textInputMap = knockoutBtn.getInputMap();
+        //Ctrl-"+" to increase the font
+        KeyStroke tempkey = KeyStroke.getKeyStroke(KeyEvent.VK_ADD, Event.CTRL_MASK);
+        textInputMap.put(tempkey, incSize);
+        //Ctrl-"-" to decrease the font
+        tempkey = KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, Event.CTRL_MASK);
+        textInputMap.put(tempkey, decSize);
+        */
         return menuBar;
     }
     
