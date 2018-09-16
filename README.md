@@ -14,5 +14,5 @@ A widespread idea that goes back to B.F. Skinner and probably others.
 
 UI: Swing. Java level: 5+, and probably earlier.
 
-License: Public Domain. Don't want to deal with licences. (Of course that means if someone puts this in a product and makes lots of money, I get nothing at all.)
+License: Public Domain. Don't want to deal with licenses. (Of course that means if someone puts this in a product and makes lots of money, I get nothing at all.)
 
