@@ -50,6 +50,7 @@ public class Memorizer extends JFrame {
 	private String fontFace = "Monospaced";	//"SansSerif";
 	private int fontSize = 12;
 	private double charDivisor = 10; 
+	private String currDir = getDefProgDir();
 	
 	private class PopupErrorHandler {
 		//show a popup window to the user with (default) error info
@@ -73,7 +74,7 @@ public class Memorizer extends JFrame {
     	
     	Action open = new AbstractAction("Open") {
             public void actionPerformed(ActionEvent e) {
-            	File fpath = getOneFileFromUser(getDefProgDir(), null
+            	File fpath = getOneFileFromUser(currDir, null
             		, new PassedTypeFilter("txt", "Text files"));
             	if (fpath==null) return;
             	
@@ -215,13 +216,14 @@ public class Memorizer extends JFrame {
 	private File getOneFileFromUser(String passedDir, Component parentComp
 			, PassedTypeFilter passedFilt) {
     	// call with (currDir, this, new PassedTypeFilter("txt", "Text files")));
-		JFileChooser ImportChooser = new JFileChooser(passedDir);
+		JFileChooser LoadChooser = new JFileChooser(passedDir);
     	if (passedFilt!=null) {
-    		ImportChooser.setFileFilter(passedFilt);
+    		LoadChooser.setFileFilter(passedFilt);
     	}
-    	int LoadChoice = ImportChooser.showOpenDialog(parentComp);
+    	int LoadChoice = LoadChooser.showOpenDialog(parentComp);
     	if (LoadChoice==JFileChooser.APPROVE_OPTION) {
-    		return ImportChooser.getSelectedFile();
+    		currDir = LoadChooser.getCurrentDirectory().getPath();
+    		return LoadChooser.getSelectedFile();
     	} else {
     		return null;
     	}
