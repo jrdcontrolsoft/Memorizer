@@ -64,7 +64,7 @@ public class Memorizer extends JFrame {
             	/* while (!closedWorked) JOptionPane.showMessageDialog(null
             		, "That's weird--can't close!", "FILE CLOSING"
             		, JOptionPane.PLAIN_MESSAGE); */
-            	//textPane.scrollRectToVisible(new Rectangle(0,0,10,10));	//didn't work
+            	textPane.setCaretPosition(0);
             }
         };
         Action quit = new AbstractAction("Exit") {
@@ -82,7 +82,7 @@ public class Memorizer extends JFrame {
 	            			+ lines.get(i) + "\n");
 	            	}
 	            	charDivisor = 10;
-	            	//textPane.scrollRectToVisible(new Rectangle(0,0,10,10));	//didn't work
+	            	textPane.setCaretPosition(0);
 	            	textPane.invalidate();
 				} else {
 					textPane.setText(defaultTxt);
@@ -159,6 +159,7 @@ public class Memorizer extends JFrame {
     		}
     	}
     	textPane.setText(allChars.toString());
+    	textPane.setCaretPosition(0);
 		if (charDivisor>1) charDivisor--;
     }
     
@@ -253,8 +254,8 @@ public class Memorizer extends JFrame {
         textPane.setFont(new Font(fontFace, Font.PLAIN, fontSize));
 		textPane.setText(defaultTxt);
 		textPane.setEditable(false);
-		add(textPane);
-		//add(new JScrollPane(textPane));	really, text should be too small to scroll
+		//add(textPane);
+		add(new JScrollPane(textPane));	//but text should really be too short to scroll
 		//add(BorderLayout.SOUTH, setupKnockoutPnl());
 		add(BorderLayout.PAGE_END, setupKnockoutBtn());
 	}
