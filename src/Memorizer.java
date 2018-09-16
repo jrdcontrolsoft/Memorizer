@@ -64,7 +64,7 @@ public class Memorizer extends JFrame {
             	/* while (!closedWorked) JOptionPane.showMessageDialog(null
             		, "That's weird--can't close!", "FILE CLOSING"
             		, JOptionPane.PLAIN_MESSAGE); */
-            	
+            	//textPane.scrollRectToVisible(new Rectangle(0,0,10,10));	//didn't work
             }
         };
         Action quit = new AbstractAction("Exit") {
@@ -82,6 +82,7 @@ public class Memorizer extends JFrame {
 	            			+ lines.get(i) + "\n");
 	            	}
 	            	charDivisor = 10;
+	            	//textPane.scrollRectToVisible(new Rectangle(0,0,10,10));	//didn't work
 	            	textPane.invalidate();
 				} else {
 					textPane.setText(defaultTxt);
@@ -253,6 +254,7 @@ public class Memorizer extends JFrame {
 		textPane.setText(defaultTxt);
 		textPane.setEditable(false);
 		add(textPane);
+		//add(new JScrollPane(textPane));	really, text should be too small to scroll
 		//add(BorderLayout.SOUTH, setupKnockoutPnl());
 		add(BorderLayout.PAGE_END, setupKnockoutBtn());
 	}
