@@ -89,7 +89,7 @@ public class Memorizer extends JFrame {
 					textPane.setText(defaultTxt);
 				}
 			}
-        };
+        }; 
         Action mono = new AbstractAction("Monospaced") {
             public void actionPerformed(ActionEvent e) {
             	fontFace = "Monospaced";
@@ -178,11 +178,12 @@ public class Memorizer extends JFrame {
 	private JButton knockoutBtn;	//, resetBtn;
 	private JButton setupKnockoutBtn() {
 		knockoutBtn = new JButton("Click for next step");
-		knockoutBtn.addActionListener(new ActionListener() {
+		/* knockoutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteLetters();
 			}
-		});
+		});	*/
+		knockoutBtn.addActionListener(e -> deleteLetters());
 		return knockoutBtn;
 	}
 	
