@@ -11,6 +11,7 @@ public class Memorizer extends JFrame {
 	/*
 	 * A program to memorize a screenfull of text:
 	 * press the button, more letters are removed.
+	 * Some changes for Java 8
 	 */
 	
 	private PopupErrorHandler allErrors = new PopupErrorHandler();
