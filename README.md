@@ -12,7 +12,7 @@ Other features: you can change the font and font size. (Though any font that isn
 
 A widespread idea that goes back to B.F. Skinner and probably others.
 
-UI: Swing. Java level: 5+, and probably earlier.
+UI: still Swing. Java level: 8 for newer features.
 
 License: Public Domain. Don't want to deal with licenses. (Of course that means if someone puts this in a product and makes lots of money, I get nothing at all.)
 

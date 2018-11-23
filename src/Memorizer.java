@@ -3,6 +3,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -46,7 +49,8 @@ public class Memorizer extends JFrame {
     	Action open = new AbstractAction("Open") {
             public void actionPerformed(ActionEvent e) {
             	File fpath = getOneFileFromUser(currDir, null
-            		, new PassedTypeFilter("txt", "Text files"));
+                	, new PassedTypeFilter("txt", "Text files"));
+            		//, (file f)->!f.isDirectory() || f.toLowerCase().endsWith(".txt"));
             	if (fpath==null) return;
             	
             	BufferedReader br = openTextInput(fpath.toString(), allErrors);
@@ -189,12 +193,9 @@ public class Memorizer extends JFrame {
 	
     //file methods
 	private String getDefProgDir() {
-		try {
-			return new File (".").getCanonicalPath();
-		} catch (IOException e) {
-			allErrors.handle(e);
-			return "";
-		}
+		//Path p = Paths.get(".");
+		//return p.toAbsolutePath().toString();
+		return Paths.get(".").toAbsolutePath().toString();
 	}
 	
 	private File getOneFileFromUser(String passedDir, Component parentComp
