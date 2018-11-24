@@ -12,7 +12,11 @@ Other features: you can change the font and font size. (Though any font that isn
 
 A widespread idea that goes back to B.F. Skinner and probably others.
 
-UI: Swing. Java level: 5+, and probably earlier.
+UI: Swing. Java level: 5+.
+
+Note that there are two branches above:
+Master branch: (this one) written in Java 5, for older JVMs
+ForJava8 branch: with changes for (you guessed it) Java 8
 
 License: Public Domain. No copyright. Don't want to deal with licenses. You can do anything, anything at all with this code. Don't have to credit me one bit. (Of course that means if someone puts this in a product and makes lots of money, I get nothing at all. Oh well.)
 
