@@ -30,7 +30,7 @@ public class Memorizer extends JFrame {
 		}
 	}
 	
-	//helper functions for menu item
+	//helper functions for new menu item
     private JMenuItem createMenuItem(Action a) {
     	return createMenuItem(a, 0);
     }
