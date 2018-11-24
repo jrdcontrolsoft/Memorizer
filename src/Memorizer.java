@@ -25,7 +25,8 @@ public class Memorizer extends JFrame {
 	private class PopupErrorHandler {
 		//show a popup window to the user with (default) error info
 		public void handle(Exception passedExp) {
-	        JOptionPane.showMessageDialog(null, passedExp.toString());
+	        JOptionPane.showMessageDialog(null, passedExp.toString()
+		        , "JAVA EXCEPTION", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
