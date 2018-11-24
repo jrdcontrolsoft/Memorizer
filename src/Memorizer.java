@@ -125,6 +125,25 @@ public class Memorizer extends JFrame {
             	textPane.invalidate();
             }
         };
+        MouseAdapter dispHelp = new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				//Simple help screen
+		        JOptionPane.showMessageDialog(null
+		        	, "<html><font size=4><b><center>Memorizer" 
+		        	+ "</center></b></font></html>\n\n"
+		        	+ "1. Use File -> Open menu to get any text file you want to remember:\n"
+		        	+ "    a poem, song, or lines. (Something you WANT to get stuck in your head.)\n"
+		        	+ "2. Read it aloud.\n"
+		        	+ "3. Click the big button on the bottom, and random letters are erased.\n"
+		        	+ "4. Read it aloud again. (There should be enough to left to still read it.)\n"
+		        	+ "5. Repeat. By the time all the letters are gone, you should have it memorized.\n\n"
+		        	+ "\"Reset Text\": click if you want to start again with all the text visible.\n"
+		        	+ "\"Font\": change the font or font size.\n"
+		        	+ "    (Though any font that isn't \"mono\" doesn\'t work as well.)\n\n"
+		        	+ "Public Domain. No copyright."
+		        	, "HELP", JOptionPane.INFORMATION_MESSAGE);
+			}
+        };
     	
         JMenu flmenu = new JMenu("File");
         flmenu.setMnemonic(KeyEvent.VK_F);
@@ -139,10 +158,14 @@ public class Memorizer extends JFrame {
         ftmenu.add(createMenuItem(sserif));
         ftmenu.add(createMenuItem(incSize));
         ftmenu.add(createMenuItem(decSize));
+        JMenu hmenu = new JMenu("Help");
+        hmenu.setMnemonic(KeyEvent.VK_H);
+        hmenu.addMouseListener(dispHelp);
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(flmenu);
         menuBar.add(rstmenu);
         menuBar.add(ftmenu);
+        menuBar.add(hmenu);
         /*
         //add keystrokes to quickly increase/decrease font
         InputMap textInputMap = textPane.getInputMap();
