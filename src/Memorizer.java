@@ -4,9 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.nio.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Stream;
+
 import javax.swing.*;
 
 public class Memorizer extends JFrame {
@@ -24,7 +27,7 @@ public class Memorizer extends JFrame {
 	private String fontFace = "Monospaced";	//"SansSerif";
 	private int fontSize = 12;
 	private double charDivisor = 10; 
-	private String currDir = getDefProgDir();
+	private Path currDir = getDefProgDir();
 	
 	private class PopupErrorHandler {
 		//show a popup window to the user with (default) error info
@@ -50,9 +53,8 @@ public class Memorizer extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	File fpath = getOneFileFromUser(currDir, null
                 	, new PassedTypeFilter("txt", "Text files"));
-            		//, (file f)->!f.isDirectory() || f.toLowerCase().endsWith(".txt"));
             	if (fpath==null) return;
-            	
+            	/*
             	BufferedReader br = openTextInput(fpath.toString(), allErrors);
             	if (br==null) return;
             	//load in file text
@@ -64,8 +66,21 @@ public class Memorizer extends JFrame {
             		textPane.setText(textPane.getText() + fileLine + "\n");
             		fileLine = readTextInput(br, allErrors);
             	}
+            	*/
+            	//load in file text
+            	textPane.setText("");
+            	//lines=(ArrayList<String>) Files.readAllLines(Paths.get(fpath.toString()));
+            	lines = new ArrayList<String>();
+            	try(Stream<String> fstrm =Files.lines(Paths.get(fpath.toString()))) {
+            		fstrm.peek(fileLine -> lines.add(fileLine))
+            		.forEach(fileLine -> textPane.setText(textPane.getText() + fileLine + "\n"));
+            	} catch(Exception dummye) {
+            		//any file problem: just go back
+            		return;
+            	}
+            	
             	charDivisor = 10;	//reset back to beginning
-            	boolean closedWorked = closeTextInput(br, allErrors);            	
+            	//boolean closedWorked = closeTextInput(br, allErrors);            	
             	/* while (!closedWorked) JOptionPane.showMessageDialog(null
             		, "That's weird--can't close!", "FILE CLOSING"
             		, JOptionPane.PLAIN_MESSAGE); */
@@ -192,22 +207,23 @@ public class Memorizer extends JFrame {
 	}
 	
     //file methods
-	private String getDefProgDir() {
+	private Path getDefProgDir() {
 		//Path p = Paths.get(".");
 		//return p.toAbsolutePath().toString();
-		return Paths.get(".").toAbsolutePath().toString();
+		//return Paths.get(".").toAbsolutePath().toString();
+		return Paths.get(".").toAbsolutePath();
 	}
 	
-	private File getOneFileFromUser(String passedDir, Component parentComp
+	private File getOneFileFromUser(Path passedDir, Component parentComp
 			, PassedTypeFilter passedFilt) {
     	// call with (currDir, this, new PassedTypeFilter("txt", "Text files")));
-		JFileChooser LoadChooser = new JFileChooser(passedDir);
+		JFileChooser LoadChooser = new JFileChooser(passedDir.toString());
     	if (passedFilt!=null) {
     		LoadChooser.setFileFilter(passedFilt);
     	}
     	int LoadChoice = LoadChooser.showOpenDialog(parentComp);
     	if (LoadChoice==JFileChooser.APPROVE_OPTION) {
-    		currDir = LoadChooser.getCurrentDirectory().getPath();
+    		currDir = Paths.get(LoadChooser.getCurrentDirectory().getPath());
     		return LoadChooser.getSelectedFile();
     	} else {
     		return null;
