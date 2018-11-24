@@ -269,22 +269,18 @@ public class Memorizer extends JFrame {
         
     	final Memorizer f = new Memorizer();
     	
-		SwingUtilities.invokeLater(
-			//the usual way to start a Swing program: stuff everything in a Runnable
-			new Runnable() {
-				public void run() {
-					f.setTitle(f.getClass().getSimpleName());
-					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					f.setSize(800, 600);
-					/*
-					f.setIconImage(new ImageIcon(getClass().getResource(
-						"bitmaps/progicon.gif")).getImage());
-					*/
-					f.setVisible(true);
-				}
-			}
-		);
-		
+		//The usual way to start a Swing program: stuff everything in a Runnable.
+		//(Don't see the Runnable? It's now hidden in the lambda.)
+		SwingUtilities.invokeLater( () -> {
+			f.setTitle(f.getClass().getSimpleName());
+			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			f.setSize(800, 600);
+			/*
+			f.setIconImage(new ImageIcon(getClass().getResource(
+				"bitmaps/progicon.gif")).getImage());
+			*/
+			f.setVisible(true);
+		} );
 		
 	}
 	
