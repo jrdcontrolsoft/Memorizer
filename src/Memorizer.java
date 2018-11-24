@@ -54,19 +54,6 @@ public class Memorizer extends JFrame {
             	File fpath = getOneFileFromUser(currDir, null
                 	, new PassedTypeFilter("txt", "Text files"));
             	if (fpath==null) return;
-            	/*
-            	BufferedReader br = openTextInput(fpath.toString(), allErrors);
-            	if (br==null) return;
-            	//load in file text
-            	textPane.setText("");
-            	lines = new ArrayList<String>();
-            	String fileLine = readTextInput(br, allErrors);
-            	while (fileLine!=null) {
-            		lines.add(fileLine);
-            		textPane.setText(textPane.getText() + fileLine + "\n");
-            		fileLine = readTextInput(br, allErrors);
-            	}
-            	*/
             	//load in file text
             	textPane.setText("");
             	//lines=(ArrayList<String>) Files.readAllLines(Paths.get(fpath.toString()));
@@ -80,10 +67,6 @@ public class Memorizer extends JFrame {
             	}
             	
             	charDivisor = 10;	//reset back to beginning
-            	//boolean closedWorked = closeTextInput(br, allErrors);            	
-            	/* while (!closedWorked) JOptionPane.showMessageDialog(null
-            		, "That's weird--can't close!", "FILE CLOSING"
-            		, JOptionPane.PLAIN_MESSAGE); */
             	textPane.setCaretPosition(0);
             }
         };
